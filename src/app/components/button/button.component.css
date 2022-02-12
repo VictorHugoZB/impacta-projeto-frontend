@@ -1,0 +1,12 @@
+.btn-style {
+    border-radius: 10px;
+    border: 2px solid black;
+    font-weight: bold;
+    padding: 10px 20px;
+    transition: all .2s;
+}
+
+.btn-style:hover {
+    background-color: #fff;
+    border-radius: 20px;
+}
