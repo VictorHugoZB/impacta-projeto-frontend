@@ -1,81 +1,83 @@
-<div class="container mt-5 table-container mb-5">
-    <div class="d-flex justify-content-between mb-5">
-        <div>
-            <input
-                type="text"
-                id="searchInput"
-                class="p-2 mr-2"
-                placeholder="Buscar..."
-                [(ngModel)]="filterText"
-                (keyup)="filter()"
-            >
-            <fa-icon [icon]="faSearch"></fa-icon>
-        </div>
-        <app-button 
-            [text]="'Adicionar departamento'"
-            class="bg-white"
-        ></app-button>
-    </div>
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">
-                ID do Departamento
-                <button class="ml-2 py-0 btn-style" (click)="order('DepartamentoId')">
-                    <fa-icon [icon]="faSort"></fa-icon>
-                </button>
-            </th>
-            <th scope="col">
-                Departamento
-                <button class="ml-2 py-0 btn-style" (click)="order('Departamento')">
-                    <fa-icon [icon]="faSort"></fa-icon>
-                </button>
-            </th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let dep of departmentFilteredList">
-            <th scope="row">{{ dep.DepartamentoId }}</th>
-            <td>{{ dep.Departamento }}</td>
-            <td class="text-right">
-                <button class="mx-2 py-0 btn-style">
-                    <fa-icon [icon]="faPen"></fa-icon>
-                </button>
-                <button
-                    class="mx-2 py-0 btn-style"
-                    (click) = "setSelectedDepartment(dep)"
-                    data-bs-toggle="modal"
-                    data-bs-target="#deleteModal"
-                >
-                    <fa-icon [icon]="faTrash"></fa-icon>
-                </button>  
-            </td>
-          </tr>
-        </tbody>
-      </table>
-  
-  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true" (hide.bs.modal)="onDismiss()">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteModalLabel">Deletar departamento</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body" *ngIf="selectedDepartment">
-          Você tem certeza que deseja deletar o departamento {{ selectedDepartment.Departamento }}?
-          <div *ngIf="loading" class="d-flex justify-content-center">
-            <div class="spinner-border text-dark my-4" role="status">
-                <span class="sr-only">Loading...</span>
+<div class="outside-table pt-3 pb-5">
+  <div class="container table-container bg-white">
+      <div class="d-flex justify-content-between mb-5">
+          <div>
+              <input
+                  type="text"
+                  id="searchInput"
+                  class="p-2 mr-2"
+                  placeholder="Buscar..."
+                  [(ngModel)]="filterText"
+                  (keyup)="filter()"
+              >
+              <fa-icon [icon]="faSearch"></fa-icon>
+          </div>
+          <app-button 
+              [text]="'Adicionar departamento'"
+              [bgColor]="'#c2c1c1'"
+          ></app-button>
+      </div>
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">
+                  ID do Departamento
+                  <button class="ml-2 py-0 btn-style" (click)="order('DepartamentoId')">
+                      <fa-icon [icon]="faSort"></fa-icon>
+                  </button>
+              </th>
+              <th scope="col">
+                  Departamento
+                  <button class="ml-2 py-0 btn-style" (click)="order('Departamento')">
+                      <fa-icon [icon]="faSort"></fa-icon>
+                  </button>
+              </th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let dep of departmentFilteredList">
+              <th scope="row">{{ dep.DepartamentoId }}</th>
+              <td>{{ dep.Departamento }}</td>
+              <td class="text-right">
+                  <button class="mx-2 py-0 btn-style">
+                      <fa-icon [icon]="faPen"></fa-icon>
+                  </button>
+                  <button
+                      class="mx-2 py-0 btn-style"
+                      (click) = "setSelectedDepartment(dep)"
+                      data-bs-toggle="modal"
+                      data-bs-target="#deleteModal"
+                  >
+                      <fa-icon [icon]="faTrash"></fa-icon>
+                  </button>  
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true" (hide.bs.modal)="onDismiss()">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel">Deletar departamento</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" *ngIf="selectedDepartment">
+            Você tem certeza que deseja deletar o departamento {{ selectedDepartment.Departamento }}?
+            <div *ngIf="loading" class="d-flex justify-content-center">
+              <div class="spinner-border text-dark my-4" role="status">
+                  <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+            <div *ngIf="!loading && responseMessage" class="font-weight-bold">
+              {{ responseMessage }}
             </div>
           </div>
-          <div *ngIf="!loading && responseMessage" class="font-weight-bold">
-            {{ responseMessage }}
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-danger" [disabled]="!!responseMessage" (click)="deleteDepartment(selectedDepartment)">Deletar</button>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" class="btn btn-danger" [disabled]="!!responseMessage" (click)="deleteDepartment(selectedDepartment)">Deletar</button>
         </div>
       </div>
     </div>

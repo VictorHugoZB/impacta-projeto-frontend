@@ -1,17 +1,25 @@
 <div>
   <app-navbar></app-navbar>
+  <div class="under-navbar">
+    <div class="video-container">
+      <video autoplay muted loop id="myVideo" class="video-space" onloadedmetadata="this.muted = true" oncanplay="this.play()">
+        <source src="../assets/video.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="teste">.</div>
+  </div>
   <div class="container-buttons">
     <app-button 
       [text]="'Gerenciar departamentos'"
       [active]="activeButton[0]"
-      [bgColor]="''"
+      [bgColor]="'#c2c1c1'"
       routerLink="department"
       (click)="changeButton(0)"
     ></app-button>
     <app-button
       [text]="'Gerenciar funcionários'"
       [active]="activeButton[1]"
-      [bgColor]="''"
+      [bgColor]="'#c2c1c1'"
       routerLink="employee"
       (click) = "changeButton(1)"
     ></app-button>
