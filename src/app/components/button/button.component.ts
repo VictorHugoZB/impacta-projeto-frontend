@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class ButtonComponent{
   @Input() text = "";
   @Input() active = false;
+  @Input() bgColor = 'transparent';
 }

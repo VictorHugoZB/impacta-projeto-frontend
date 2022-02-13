@@ -1,0 +1,18 @@
+.table-container {
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    padding: 50px;
+}
+
+.btn-style{
+    background-color: transparent;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    transition: all .1s;
+}
+
+.btn-style:hover{
+    background-color: black;
+    color: white;
+}

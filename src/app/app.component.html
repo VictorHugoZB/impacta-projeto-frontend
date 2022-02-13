@@ -2,16 +2,16 @@
   <app-navbar></app-navbar>
   <div class="container-buttons">
     <app-button 
-      class="btn-style"
       [text]="'Gerenciar departamentos'"
       [active]="activeButton[0]"
+      [bgColor]="''"
       routerLink="department"
       (click)="changeButton(0)"
     ></app-button>
     <app-button
-      class="btn-style"
       [text]="'Gerenciar funcionários'"
       [active]="activeButton[1]"
+      [bgColor]="''"
       routerLink="employee"
       (click) = "changeButton(1)"
     ></app-button>
