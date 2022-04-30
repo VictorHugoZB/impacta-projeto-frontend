@@ -15,6 +15,7 @@
             <app-button 
                 [text]="'Adicionar funcionário'"
                 [bgColor]="'#c2c1c1'"
+                routerLink="/add-employee"
             ></app-button>
         </div>
         <table class="table">
@@ -54,7 +55,7 @@
                 <td>{{ emp.Departamento }}</td>
                 <td>{{ emp.DataContratacao }}</td>
                 <td class="text-right">
-                    <button class="mx-2 py-0 btn-style">
+                    <button class="mx-2 py-0 btn-style" routerLink="/edit-employee/{{emp.EmployeeId}}">
                         <fa-icon [icon]="faPen"></fa-icon>
                     </button>
                     <button

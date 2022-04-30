@@ -21,6 +21,15 @@ export default class ApiService {
     );
   }
 
+  getDep(id: number): Observable<Department> {
+    return this.http.get<Department>(`${this.APIUrl}/department/${id}`).pipe(
+      catchError((err, result) => {
+        console.log(err);
+        return result;
+      })
+    );
+  }
+
   addDepartment(val:Department) {
     return this.http.post(`${this.APIUrl}/department`, val).pipe(
       catchError((err, result) => {
@@ -50,6 +59,15 @@ export default class ApiService {
 
   getEmpList():Observable<Employee[]> {
     return this.http.get<Employee[]>(`${this.APIUrl}/employee`).pipe(
+      catchError((err, result) => {
+        console.log(err);
+        return result;
+      })
+    );
+  }
+
+  getEmp(id: number): Observable<Employee> {
+    return this.http.get<Employee>(`${this.APIUrl}/employee/${id}`).pipe(
       catchError((err, result) => {
         console.log(err);
         return result;

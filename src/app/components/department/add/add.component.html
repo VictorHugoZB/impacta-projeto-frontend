@@ -1,0 +1,63 @@
+<div class="pt-5 pb-5 outside-form">
+    <div class="container bg-white form-container">
+        <h1 class="mb-5">Adicionar departamento</h1>
+        <form ngNativeValidate>
+          <label for="departmentName" class="input-label font-weight-bold">Nome do departamento</label>
+          <input
+              id="departmentName"
+              name="departmentName"
+              type="text"
+              class="name-input"
+              placeholder="Nome do novo departamento..."
+              maxlength="15"
+              [(ngModel)]="depName"
+              required
+          />
+          <div class="d-flex justify-content-end w-100">
+              <button class="btn btn-secondary mt-3" routerLink="/department">
+                  Cancelar
+              </button>
+              <button
+                  type="submit"
+                  class="btn btn-success mt-3 ml-3"
+                  (click)="addDepartment()"
+                  [attr.data-bs-toggle]="depName ? 'modal' : ''"
+                  [attr.data-bs-target]="depName ? '#responseModal' : ''"
+              >
+                  Adicionar departamento
+              </button>
+          </div>
+      </form>
+    </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="responseModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="responseModalLabel" aria-hidden="true" (hide.bs.modal)="close()">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="responseModalLabel">Adicionando...</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="d-flex w-100 justify-content-center" *ngIf="!response">
+                <div class="spinner-border text-dark" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+            <div *ngIf="response" class="font-weight-bold">
+                -> {{ response }}
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button 
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            [disabled]="!response"
+        >Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

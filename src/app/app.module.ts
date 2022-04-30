@@ -12,6 +12,11 @@ import { EmployeeComponent } from './components/employee/employee.component';
 import {HttpClientModule} from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
+import { AddComponent } from './components/department/add/add.component';
+import { RouterModule } from '@angular/router';
+import { EditComponent } from './components/department/edit/edit.component';
+import { AddEmployeeComponent } from './components/employee/add-employee/add-employee.component';
+import { EditEmployeeComponent } from './components/employee/edit-employee/edit-employee.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +25,10 @@ import { FormsModule } from '@angular/forms';
     ButtonComponent,
     DepartmentComponent,
     EmployeeComponent,
+    AddComponent,
+    EditComponent,
+    AddEmployeeComponent,
+    EditEmployeeComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +36,8 @@ import { FormsModule } from '@angular/forms';
     NgbModule,
     HttpClientModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent],

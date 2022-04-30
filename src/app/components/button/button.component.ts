@@ -9,4 +9,5 @@ export class ButtonComponent{
   @Input() text = "";
   @Input() active = false;
   @Input() bgColor = 'transparent';
+  @Input() textColor = 'black';
 }

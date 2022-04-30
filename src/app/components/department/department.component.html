@@ -15,6 +15,7 @@
           <app-button 
               [text]="'Adicionar departamento'"
               [bgColor]="'#c2c1c1'"
+              routerLink="/add-department"
           ></app-button>
       </div>
       <table class="table">
@@ -40,7 +41,10 @@
               <th scope="row">{{ dep.DepartamentoId }}</th>
               <td>{{ dep.Departamento }}</td>
               <td class="text-right">
-                  <button class="mx-2 py-0 btn-style">
+                  <button
+                    class="mx-2 py-0 btn-style"
+                    routerLink="/edit-department/{{dep.DepartamentoId}}"  
+                  >
                       <fa-icon [icon]="faPen"></fa-icon>
                   </button>
                   <button
